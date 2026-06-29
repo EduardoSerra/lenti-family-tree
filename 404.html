@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https://*.basemaps.cartocdn.com; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'">
+<title>Family Tree</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Unlock screen (shown only for the encrypted build) -->
+<div id="lock" class="lock hidden" aria-hidden="true">
+  <form id="lock-form" class="lock-card" autocomplete="off">
+    <div class="lock-crest">❦</div>
+    <h1 data-i18n="lockTitle">A Family Tree</h1>
+    <p class="lock-sub" data-i18n="lockSub">This is a private family archive. Please enter the family password.</p>
+    <input id="lock-input" type="password" data-i18n-ph="lockPlaceholder" placeholder="Family password" autocomplete="off" spellcheck="false">
+    <button type="submit" id="lock-btn" data-i18n="lockButton">Unlock</button>
+    <p id="lock-error" class="lock-error" role="alert"></p>
+  </form>
+</div>
+
+<!-- App -->
+<div id="app" class="app hidden">
+  <header class="topbar">
+    <button class="brand" data-route="#/" title="Home">
+      <span class="brand-mark">❦</span>
+      <span class="brand-text" id="brand-title">Family Archive</span>
+    </button>
+    <div class="search-wrap">
+      <input id="search" type="search" data-i18n-ph="searchPlaceholder" placeholder="Search a name…" autocomplete="off">
+      <div id="search-results" class="search-results hidden"></div>
+    </div>
+    <nav class="nav" id="nav">
+      <a data-route="#/" data-i18n="navTree">Tree</a>
+      <a data-route="#/timeline" data-i18n="navTimeline">Timeline</a>
+      <a data-route="#/journey" data-i18n="navJourney">Journey</a>
+      <a data-route="#/sources" data-i18n="navSources">Documents</a>
+      <a data-route="#/story" data-i18n="navStory">Story</a>
+      <a data-route="#/related" data-i18n="navRelated">Relate</a>
+    </nav>
+    <button id="lang-toggle" class="lang-toggle" title="Language">ES</button>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Menu">☰</button>
+  </header>
+
+  <main id="view" class="view"><!-- active view rendered here --></main>
+
+  <!-- Person detail panel -->
+  <aside id="person-panel" class="panel hidden" aria-hidden="true"></aside>
+  <div id="panel-scrim" class="scrim hidden"></div>
+
+  <!-- Document lightbox -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true"></div>
+
+  <footer class="footer">
+    <span data-i18n="footer">Private family tree — generated from the family GEDCOM, research vault and documents. Please do not share publicly.</span>
+  </footer>
+</div>
+
+<!-- d3 is lazy-loaded by the tree view (fulltree.js) so non-tree pages don't pay for it -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
